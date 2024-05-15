@@ -4,16 +4,14 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/linxGnu/gosmpp/data"
-	"github.com/linxGnu/gosmpp/pdu"
+	"github.com/cloudnumbering/gosmpp/data"
+	"github.com/cloudnumbering/gosmpp/pdu"
 )
 
-var (
-	// NonTLSDialer is non-tls connection dialer.
-	NonTLSDialer = func(addr string) (net.Conn, error) {
-		return net.Dial("tcp", addr)
-	}
-)
+// NonTLSDialer is non-tls connection dialer.
+var NonTLSDialer = func(addr string) (net.Conn, error) {
+	return net.Dial("tcp", addr)
+}
 
 // Dialer is connection dialer.
 type Dialer func(addr string) (net.Conn, error)

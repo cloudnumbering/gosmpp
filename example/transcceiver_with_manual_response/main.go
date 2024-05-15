@@ -6,9 +6,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/linxGnu/gosmpp"
-	"github.com/linxGnu/gosmpp/data"
-	"github.com/linxGnu/gosmpp/pdu"
+	"github.com/cloudnumbering/gosmpp"
+	"github.com/cloudnumbering/gosmpp/data"
+	"github.com/cloudnumbering/gosmpp/pdu"
 )
 
 func main() {
@@ -69,7 +69,6 @@ func sendingAndReceiveSMS(wg *sync.WaitGroup) {
 		}
 		time.Sleep(time.Second)
 	}
-
 }
 
 func handlePDU() func(pdu.PDU) (pdu.PDU, bool) {

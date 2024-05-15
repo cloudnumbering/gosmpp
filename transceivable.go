@@ -3,7 +3,7 @@ package gosmpp
 import (
 	"sync/atomic"
 
-	"github.com/linxGnu/gosmpp/pdu"
+	"github.com/cloudnumbering/gosmpp/pdu"
 )
 
 type transceivable struct {

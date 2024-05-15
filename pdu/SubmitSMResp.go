@@ -2,8 +2,9 @@ package pdu
 
 import (
 	"errors"
-	"github.com/linxGnu/gosmpp/data"
 	"io"
+
+	"github.com/cloudnumbering/gosmpp/data"
 )
 
 // SubmitSMResp PDU.

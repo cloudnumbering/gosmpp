@@ -1,9 +1,10 @@
 package gosmpp
 
 import (
-	"github.com/linxGnu/gosmpp/pdu"
 	"sync/atomic"
 	"testing"
+
+	"github.com/cloudnumbering/gosmpp/pdu"
 
 	"github.com/stretchr/testify/require"
 )

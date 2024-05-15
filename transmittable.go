@@ -8,13 +8,11 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/linxGnu/gosmpp/pdu"
+	"github.com/cloudnumbering/gosmpp/pdu"
 )
 
-var (
-	// ErrConnectionClosing indicates transmitter is closing. Can not send any PDU.
-	ErrConnectionClosing = fmt.Errorf("connection is closing, can not send PDU to SMSC")
-)
+// ErrConnectionClosing indicates transmitter is closing. Can not send any PDU.
+var ErrConnectionClosing = fmt.Errorf("connection is closing, can not send PDU to SMSC")
 
 type transmittable struct {
 	settings Settings

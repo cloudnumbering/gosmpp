@@ -5,16 +5,14 @@ import (
 	"testing"
 	"time"
 
-	"github.com/linxGnu/gosmpp/data"
-	"github.com/linxGnu/gosmpp/pdu"
+	"github.com/cloudnumbering/gosmpp/data"
+	"github.com/cloudnumbering/gosmpp/pdu"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
-var (
-	countSubmitSMResp, countDeliverSM int32
-)
+var countSubmitSMResp, countDeliverSM int32
 
 func handlePDU(t *testing.T) func(pdu.PDU, bool) {
 	return func(p pdu.PDU, responded bool) {
