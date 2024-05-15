@@ -6,6 +6,7 @@ import (
 
 	"github.com/cloudnumbering/gosmpp/data"
 	"github.com/cloudnumbering/gosmpp/pdu"
+	"github.com/rs/zerolog/log"
 )
 
 // NonTLSDialer is non-tls connection dialer.
@@ -60,6 +61,8 @@ func (c *connector) Connect() (conn *Connection, err error) {
 }
 
 func connect(dialer Dialer, addr string, bindReq *pdu.BindRequest) (c *Connection, err error) {
+	log.Debug().Str("addr", addr).Msg("Dialling SMSC")
+
 	conn, err := dialer(addr)
 	if err != nil {
 		return
@@ -67,6 +70,8 @@ func connect(dialer Dialer, addr string, bindReq *pdu.BindRequest) (c *Connectio
 
 	// create wrapped connection
 	c = NewConnection(conn)
+
+	log.Debug().Interface("bind", bindReq).Msg("Connected to SMSC, sending bind request")
 
 	// send binding request
 	_, err = c.WritePDU(bindReq)

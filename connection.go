@@ -6,7 +6,6 @@ import (
 	"time"
 
 	"github.com/cloudnumbering/gosmpp/pdu"
-	"github.com/rs/zerolog/log"
 )
 
 // Connection wraps over net.Conn with buffered data reader.
@@ -46,7 +45,10 @@ func (c *Connection) WritePDU(p pdu.PDU) (n int, err error) {
 	buf := pdu.NewBuffer(make([]byte, 0, 64))
 	p.Marshal(buf)
 
-	log.Debug().Str("pdu", buf.String()).Msg("Writing PDU")
+	// log.Debug().
+	// 	Str("pduMarshalled", buf.String()).
+	// 	Interface("pdu", p).
+	// 	Msg("Writing PDU")
 
 	n, err = c.conn.Write(buf.Bytes())
 
