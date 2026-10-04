@@ -35,7 +35,7 @@ func (c *QuerySM) GetResponse() PDU {
 
 // Marshal implements PDU interface.
 func (c *QuerySM) Marshal(b *ByteBuffer) {
-	c.base.marshal(b, func(b *ByteBuffer) {
+	c.marshal(b, func(b *ByteBuffer) {
 		b.Grow(len(c.MessageID) + 1)
 
 		_ = b.WriteCString(c.MessageID)
@@ -45,7 +45,7 @@ func (c *QuerySM) Marshal(b *ByteBuffer) {
 
 // Unmarshal implements PDU interface.
 func (c *QuerySM) Unmarshal(b *ByteBuffer) error {
-	return c.base.unmarshal(b, func(b *ByteBuffer) (err error) {
+	return c.unmarshal(b, func(b *ByteBuffer) (err error) {
 		if c.MessageID, err = b.ReadCString(); err == nil {
 			err = c.SourceAddr.Unmarshal(b)
 		}

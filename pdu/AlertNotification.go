@@ -34,7 +34,7 @@ func (a *AlertNotification) GetResponse() PDU {
 
 // Marshal implements PDU interface.
 func (a *AlertNotification) Marshal(b *ByteBuffer) {
-	a.base.marshal(b, func(b *ByteBuffer) {
+	a.marshal(b, func(b *ByteBuffer) {
 		a.SourceAddr.Marshal(b)
 		a.EsmeAddr.Marshal(b)
 	})
@@ -42,7 +42,7 @@ func (a *AlertNotification) Marshal(b *ByteBuffer) {
 
 // Unmarshal implements PDU interface.
 func (a *AlertNotification) Unmarshal(b *ByteBuffer) error {
-	return a.base.unmarshal(b, func(b *ByteBuffer) (err error) {
+	return a.unmarshal(b, func(b *ByteBuffer) (err error) {
 		if err = a.SourceAddr.Unmarshal(b); err == nil {
 			err = a.EsmeAddr.Unmarshal(b)
 		}

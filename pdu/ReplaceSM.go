@@ -46,7 +46,7 @@ func (c *ReplaceSM) GetResponse() PDU {
 
 // Marshal implements PDU interface.
 func (c *ReplaceSM) Marshal(b *ByteBuffer) {
-	c.base.marshal(b, func(b *ByteBuffer) {
+	c.marshal(b, func(b *ByteBuffer) {
 		b.Grow(len(c.MessageID) + len(c.ScheduleDeliveryTime) + len(c.ValidityPeriod) + 4)
 
 		_ = b.WriteCString(c.MessageID)
@@ -60,7 +60,7 @@ func (c *ReplaceSM) Marshal(b *ByteBuffer) {
 
 // Unmarshal implements PDU interface.
 func (c *ReplaceSM) Unmarshal(b *ByteBuffer) error {
-	return c.base.unmarshal(b, func(b *ByteBuffer) (err error) {
+	return c.unmarshal(b, func(b *ByteBuffer) (err error) {
 		if c.MessageID, err = b.ReadCString(); err == nil {
 			if err = c.SourceAddr.Unmarshal(b); err == nil {
 				if c.ScheduleDeliveryTime, err = b.ReadCString(); err == nil {

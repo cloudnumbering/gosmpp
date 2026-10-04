@@ -40,7 +40,7 @@ func (c *CancelSM) GetResponse() PDU {
 
 // Marshal implements PDU interface.
 func (c *CancelSM) Marshal(b *ByteBuffer) {
-	c.base.marshal(b, func(b *ByteBuffer) {
+	c.marshal(b, func(b *ByteBuffer) {
 		b.Grow(len(c.ServiceType) + len(c.MessageID) + 2)
 
 		_ = b.WriteCString(c.ServiceType)
@@ -52,7 +52,7 @@ func (c *CancelSM) Marshal(b *ByteBuffer) {
 
 // Unmarshal implements PDU interface.
 func (c *CancelSM) Unmarshal(b *ByteBuffer) error {
-	return c.base.unmarshal(b, func(b *ByteBuffer) (err error) {
+	return c.unmarshal(b, func(b *ByteBuffer) (err error) {
 		if c.ServiceType, err = b.ReadCString(); err == nil {
 			if c.MessageID, err = b.ReadCString(); err == nil {
 				if err = c.SourceAddr.Unmarshal(b); err == nil {

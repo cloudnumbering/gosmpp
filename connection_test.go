@@ -9,7 +9,7 @@ import (
 )
 
 func TestConnection(t *testing.T) {
-	conn, err := net.Dial("tcp", "smscsim.melroselabs.com:2775")
+	conn, err := net.Dial("tcp", smscAddr)
 	require.Nil(t, err)
 
 	c := NewConnection(conn)

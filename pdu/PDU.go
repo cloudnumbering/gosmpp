@@ -65,7 +65,7 @@ func (c *base) GetHeader() Header {
 func (c *base) unmarshal(b *ByteBuffer, bodyReader func(*ByteBuffer) error) (err error) {
 	fullLen := b.Len()
 
-	if err = c.Header.Unmarshal(b); err == nil {
+	if err = c.Unmarshal(b); err == nil {
 
 		// try to unmarshal body
 		if bodyReader != nil {
@@ -133,7 +133,7 @@ func (c *base) marshal(b *ByteBuffer, bodyWriter func(*ByteBuffer)) {
 
 	// write header
 	c.CommandLength = int32(data.PDU_HEADER_SIZE + bodyBuf.Len())
-	c.Header.Marshal(b)
+	c.Marshal(b)
 
 	// write body and its optional params
 	b.WriteBuffer(bodyBuf)

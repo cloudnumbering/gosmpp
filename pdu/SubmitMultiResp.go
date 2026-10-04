@@ -43,7 +43,7 @@ func (c *SubmitMultiResp) GetResponse() PDU {
 
 // Marshal implements PDU interface.
 func (c *SubmitMultiResp) Marshal(b *ByteBuffer) {
-	c.base.marshal(b, func(b *ByteBuffer) {
+	c.marshal(b, func(b *ByteBuffer) {
 		b.Grow(len(c.MessageID) + 1)
 
 		_ = b.WriteCString(c.MessageID)
@@ -53,7 +53,7 @@ func (c *SubmitMultiResp) Marshal(b *ByteBuffer) {
 
 // Unmarshal implements PDU interface.
 func (c *SubmitMultiResp) Unmarshal(b *ByteBuffer) error {
-	return c.base.unmarshal(b, func(b *ByteBuffer) (err error) {
+	return c.unmarshal(b, func(b *ByteBuffer) (err error) {
 		if c.MessageID, err = b.ReadCString(); err == nil {
 			err = c.UnsuccessSMEs.Unmarshal(b)
 		}

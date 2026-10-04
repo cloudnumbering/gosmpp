@@ -31,7 +31,7 @@ func (c *DestinationAddress) Unmarshal(b *ByteBuffer) (err error) {
 			err = c.dl.Unmarshal(b)
 
 		default:
-			err = fmt.Errorf("Unrecognize dest_flag %d", c.destFlag)
+			err = fmt.Errorf("Unrecognize dest_flag %d", c.destFlag) //nolint:staticcheck // Preserve the existing diagnostic.
 
 		}
 	}
