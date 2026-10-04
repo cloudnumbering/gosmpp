@@ -43,7 +43,7 @@ func (c *DataSM) GetResponse() PDU {
 
 // Marshal implements PDU interface.
 func (c *DataSM) Marshal(b *ByteBuffer) {
-	c.base.marshal(b, func(b *ByteBuffer) {
+	c.marshal(b, func(b *ByteBuffer) {
 		b.Grow(len(c.ServiceType) + 4)
 
 		_ = b.WriteCString(c.ServiceType)
@@ -57,7 +57,7 @@ func (c *DataSM) Marshal(b *ByteBuffer) {
 
 // Unmarshal implements PDU interface.
 func (c *DataSM) Unmarshal(b *ByteBuffer) error {
-	return c.base.unmarshal(b, func(b *ByteBuffer) (err error) {
+	return c.unmarshal(b, func(b *ByteBuffer) (err error) {
 		if c.ServiceType, err = b.ReadCString(); err == nil {
 			if err = c.SourceAddr.Unmarshal(b); err == nil {
 				if err = c.DestAddr.Unmarshal(b); err == nil {

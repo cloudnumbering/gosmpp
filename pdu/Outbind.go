@@ -32,7 +32,7 @@ func (c *Outbind) GetResponse() PDU {
 
 // Marshal implements PDU interface.
 func (c *Outbind) Marshal(b *ByteBuffer) {
-	c.base.marshal(b, func(b *ByteBuffer) {
+	c.marshal(b, func(b *ByteBuffer) {
 		b.Grow(len(c.SystemID) + len(c.Password) + 2)
 
 		_ = b.WriteCString(c.SystemID)
@@ -42,7 +42,7 @@ func (c *Outbind) Marshal(b *ByteBuffer) {
 
 // Unmarshal implements PDU interface.
 func (c *Outbind) Unmarshal(b *ByteBuffer) error {
-	return c.base.unmarshal(b, func(b *ByteBuffer) (err error) {
+	return c.unmarshal(b, func(b *ByteBuffer) (err error) {
 		if c.SystemID, err = b.ReadCString(); err == nil {
 			c.Password, err = b.ReadCString()
 		}

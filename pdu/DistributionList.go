@@ -33,7 +33,7 @@ func (c *DistributionList) Marshal(b *ByteBuffer) {
 // SetName sets DistributionList name.
 func (c *DistributionList) SetName(name string) (err error) {
 	if len(name) > data.SM_DL_NAME_LEN {
-		err = fmt.Errorf("Distribution List name exceed limit. (%d > %d)", len(name), data.SM_DL_NAME_LEN)
+		err = fmt.Errorf("Distribution List name exceed limit. (%d > %d)", len(name), data.SM_DL_NAME_LEN) //nolint:staticcheck // Preserve the existing diagnostic.
 	} else {
 		c.name = name
 	}

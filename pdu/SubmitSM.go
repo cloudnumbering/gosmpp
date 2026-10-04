@@ -92,7 +92,7 @@ func (c *SubmitSM) Split() (multiSubSM []*SubmitSM, err error) {
 
 // Marshal implements PDU interface.
 func (c *SubmitSM) Marshal(b *ByteBuffer) {
-	c.base.marshal(b, func(b *ByteBuffer) {
+	c.marshal(b, func(b *ByteBuffer) {
 		b.Grow(len(c.ServiceType) + len(c.ScheduleDeliveryTime) + len(c.ValidityPeriod) + 10)
 
 		_ = b.WriteCString(c.ServiceType)
@@ -111,7 +111,7 @@ func (c *SubmitSM) Marshal(b *ByteBuffer) {
 
 // Unmarshal implements PDU interface.
 func (c *SubmitSM) Unmarshal(b *ByteBuffer) error {
-	return c.base.unmarshal(b, func(b *ByteBuffer) (err error) {
+	return c.unmarshal(b, func(b *ByteBuffer) (err error) {
 		if c.ServiceType, err = b.ReadCString(); err == nil {
 			if err = c.SourceAddr.Unmarshal(b); err == nil {
 				if err = c.DestAddr.Unmarshal(b); err == nil {

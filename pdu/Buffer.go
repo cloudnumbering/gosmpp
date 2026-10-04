@@ -24,7 +24,7 @@ const (
 
 var (
 	// ErrBufferNotEnoughByteToRead indicates not enough byte(s) to read from buffer.
-	ErrBufferNotEnoughByteToRead = fmt.Errorf("Not enough byte to read from buffer")
+	ErrBufferNotEnoughByteToRead = fmt.Errorf("Not enough byte to read from buffer") //nolint:staticcheck // Preserve the exported error message.
 
 	endianese = binary.BigEndian
 )
@@ -130,5 +130,5 @@ func (c *ByteBuffer) ReadCString() (st string, err error) {
 
 // HexDump returns hex dump.
 func (c *ByteBuffer) HexDump() string {
-	return fmt.Sprintf("%x", c.Buffer.Bytes())
+	return fmt.Sprintf("%x", c.Bytes())
 }

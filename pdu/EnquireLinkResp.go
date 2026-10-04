@@ -39,10 +39,10 @@ func (c *EnquireLinkResp) GetResponse() PDU {
 
 // Marshal implements PDU interface.
 func (c *EnquireLinkResp) Marshal(b *ByteBuffer) {
-	c.base.marshal(b, nil)
+	c.marshal(b, nil)
 }
 
 // Unmarshal implements PDU interface.
 func (c *EnquireLinkResp) Unmarshal(b *ByteBuffer) error {
-	return c.base.unmarshal(b, nil)
+	return c.unmarshal(b, nil)
 }

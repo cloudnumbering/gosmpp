@@ -80,7 +80,7 @@ func (b *BindRequest) GetResponse() PDU {
 
 // Marshal implements PDU interface.
 func (b *BindRequest) Marshal(w *ByteBuffer) {
-	b.base.marshal(w, func(w *ByteBuffer) {
+	b.marshal(w, func(w *ByteBuffer) {
 		w.Grow(len(b.SystemID) + len(b.Password) + len(b.SystemType) + 4)
 
 		_ = w.WriteCString(b.SystemID)
@@ -93,7 +93,7 @@ func (b *BindRequest) Marshal(w *ByteBuffer) {
 
 // Unmarshal implements PDU interface.
 func (b *BindRequest) Unmarshal(w *ByteBuffer) error {
-	return b.base.unmarshal(w, func(w *ByteBuffer) (err error) {
+	return b.unmarshal(w, func(w *ByteBuffer) (err error) {
 		if b.SystemID, err = w.ReadCString(); err == nil {
 			if b.Password, err = w.ReadCString(); err == nil {
 				if b.SystemType, err = w.ReadCString(); err == nil {
